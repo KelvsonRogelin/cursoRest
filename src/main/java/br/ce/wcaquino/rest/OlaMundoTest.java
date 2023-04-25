@@ -65,5 +65,16 @@ public class OlaMundoTest {
 		assertThat("Joaquina", anyOf(is("Maria"), is("Joaquina"))); // um ou outro
 		assertThat("Joaquina", allOf(startsWith("Joa"), endsWith("ina"), containsString("qui")));// começa com, termina com, e contem
 	}
-
+@Test
+	public void devoValidarBody() {
+	given() 			//Pré condições
+	.when()			//Metodos hhtp get,post etc.
+		.get("http://restapi.wcaquino.me/ola")
+	.then()			//verificações
+		.statusCode(200)
+		.body(is("Ola Mundo!"))
+		.body(containsString("Mundo"))
+		.body(is(not(nullValue())));
 }
+}
+
